@@ -1,6 +1,5 @@
 //function checks if account information entered is valid sends AJAX call to server to create account if so
-checkUserName = function ()
-{
+checkUserName = function () {
 	//gets var data from html elements, and if address elements not entered, stores an empty string in each.
 	var uname = document.getElementById("uname").value;
 	var pc = document.getElementById("pc").value;
@@ -37,8 +36,7 @@ checkUserName = function ()
 }
 
 //verifies username and password entered and sends AJAX call to server to request sign in.
-signIn = function ()
-{
+signIn = function () {
 	var uname = document.getElementById("uname2").value;
 	var pc = document.getElementById("pc2").value;
 	var params = "uname=" + encodeURIComponent(uname) + "&pc=" + encodeURIComponent(pc);

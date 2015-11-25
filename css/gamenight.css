@@ -9,12 +9,12 @@ html, body {
 	background-color: #0c4a60;
 }
 
-h4, h3, h2, h1 {
+h6, h5, h4, h3, h2, h1 {
 	font-family: 'Fira Sans', sans-serif;
 	text-align: center;
 }
 
-h2 {
+h2, h4 {
 	color: #ef6b33 !important;
 }
 
@@ -36,6 +36,74 @@ h2 {
 }
 
 .col-med-6, .col-xs-6 img {
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 20%;
+}
+
+.col-md-2, .col-xs-2{
+	background-color: #0c4a60;
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding-bottom: 6.5%;
+	height: 100%;
+}
+
+.col-med-2, .col-xs-2 img {
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 20%;
+}
+
+.col-md-3, .col-xs-3{
+	background-color: #0c4a60;
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding-bottom: 6.5%;
+	height: 100%;
+}
+
+.col-med-3, .col-xs-3 img {
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 20%;
+}
+
+.col-md-9, .col-xs-9{
+	background-color: #0c4a60;
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding-bottom: 6.5%;
+	height: 100%;
+}
+
+.col-med-9, .col-xs-9 img {
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 20%;
+}
+
+.col-md-10, .col-xs-10 {
+	background-color: #0c4a60;
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding-bottom: 6.5%;
+	height: 100%;
+}
+
+.col-med-10, .col-xs-10 img {
 	width: 80%;
 	margin-left: 10%;
 	margin-right: 10%;
@@ -114,6 +182,20 @@ p {
 /********************************************************************
 			Buttons
 *********************************************************************/
+.buttonAction{
+	display: inline-block;
+	min-width: 150px;
+	width: 90% !important;
+	padding-bottom: .3em;
+	padding-top: .3em;
+	background: #aadff1;
+	border-radius: 7px;
+	color: white;
+	font-family: 'Fira Sans', sans-serif;
+	text-align: center;
+	font-size: 1.5em;
+}
+
 .buttonLogin{
 	display: inline-block;
 	min-width: 150px;
@@ -199,10 +281,9 @@ input[type="radio"] {
 	background-color: #e1dddb;
 }
 
-/*********************************************************************
-			Main Body of Text - Login
-**********************************************************************/
-
+.divContent {
+	margin-top: 2em;
+}
 
 /**********************************************************************
 			Left Side

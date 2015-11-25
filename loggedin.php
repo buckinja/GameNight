@@ -19,67 +19,52 @@
 		<link rel="stylesheet" href="//maxcdn.boostrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,700' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Orbitron:500' rel='stylesheet' type='text/css'>
+		<script src="actions.js"></script>
 	</head>
 
 	<body>
 		<?php include("navigation.php"); ?>
 
-		<div class="container-fluid">
-      		<div class="content">
-				<div class="mainText">
-					<?php
-						//if no username is stored, redirect to login page
-						if (session_status() == PHP_SESSION_ACTIVE) {
-							if (!isset($_SESSION['uname'])) { 
-								echo "<h2>Please sign in!</h2>";
-								echo '<script type="text/javascript">
-					     			var redirect = function () {
-					         			window.location.replace("gamenight.php");
-					     			};
-					     			redirect();</script>';
-							} else {
-								echo "<h2>Welcome, " . $_SESSION['uname'] . "!</h2>";
-							}
-						}
-					?>
-					<br>
-					<p>TEXT HERE.</p>
-					<br>
-				</div>
-			</div>
-		</div>
-
 		<div class="row">
 
 			<!-- left side of screen -->
-			<div class="col-md-6 col-xs-6">
+			<div class="col-md-3 col-xs-3">
 				<div class="inside inside-full-height">
-      			  	<div class="content">
-      			  		<div class="mainText">
-      				  		<h2>Your Assigned Section Title Here</h2>
-							<p>This is where you will code and work!!</p>
-							<p>Tables, login, text, and forms in this section, please </p>
-							<p>Example Buttons to use below: </p>
-							<p><button class="buttonLogin" type="button">Login</button></p>
-							<p><button class="buttonOther" type="button">OtherButton</button></p>
-						</div>
+      			  	<div class="divContent">
+      			  		<p><button class="buttonAction" type="button">HOST A GAME NIGHT</button></p>
+      			  		<p><button class="buttonAction" type="button">GET RECOMMENDATIONS</button></p>
+      			  		<p><button class="buttonAction" type="button">SEE HOW YOU RANK</button></p>
+      			  		<p><button class="buttonAction" type="button" onclick="insertGame()">ADD A NEW GAME</button></p>
+      			  		<p><button class="buttonAction" type="button">RATE A GAME</button></p>
       			  	</div>
      			</div>
 			</div>
 
 			<!-- right side of screen -->
-			<div class="col-md-6 col-xs-6">
+			<div class="col-md-9 col-xs-9">
 				<div class="inside inside-full-height">
-      				  <div class="content">
-      				  	<div class="mainText">
-      				  		<h2>TITLE!</h2>
-							<p>This is where you will code and work!!</p>
-							<p>Tables, login, text, and forms in this section, please </p>
-							<p>Example Buttons to use below: </p>
-							<p><button class="buttonLogin" type="button">LOGIN</button></p>
-							<p><button class="buttonOther" type="button">BUTTON</button></p>
+      				<div class="divContent">
+      					<div class="mainText" id="workarea">
+		      				<?php
+								//if no username is stored, redirect to login page
+								if (session_status() == PHP_SESSION_ACTIVE) {
+									if (!isset($_SESSION['uname'])) { 
+										echo "<h2>Please sign in!</h2>";
+										echo '<script type="text/javascript">
+							     			var redirect = function () {
+							         			window.location.replace("gamenight.php");
+							     			};
+							     			redirect();</script>';
+									} else {
+										echo "<h2>Welcome, " . $_SESSION['uname'] . "!</h2>";
+									}
+								}
+							?>
+							<br>
+							<h5>Happy gaming.</h5>
+							<br>
 						</div>
-					  </div>
+					</div>
 				</div>
 			</div>
 		</div> <!-- end row -->
