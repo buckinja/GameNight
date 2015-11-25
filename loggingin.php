@@ -12,7 +12,7 @@
   } 
 
   //get pw from table
-  if (!($stmt = $mysqli->prepare('SELECT pc, slt FROM player WHERE uname = (?)'))) {
+  if (!($stmt = $mysqli->prepare('SELECT id, pc, slt FROM player WHERE uname = (?)'))) {
       echo "<p>You did not enter a valid username or password.</p>";
   } 
   if (!($stmt->bind_param("s", $uname))) {
@@ -26,7 +26,7 @@
   $pcode = 0;
   $slt = "";
 
-  if (!($stmt->bind_result($pcode, $slt))) {
+  if (!($stmt->bind_result($id, $pcode, $slt))) {
       echo "Binding result failed: (" . $stmt->errno . ") " . $stmt->error;
   }
 
@@ -48,6 +48,7 @@
     if (session_status() == PHP_SESSION_ACTIVE) {
       if (!isset($_SESSION['uname']) || $_SESSION['uname'] === $uname) { //if new session, set username
         $_SESSION['uname'] = $uname;
+        $_SESSION['id'] = $id;
         echo 'Welcome!';
       } else {
         echo "Another user is currently logged in.";
