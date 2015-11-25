@@ -1,0 +1,214 @@
+/*******************************************************************
+			General
+*******************************************************************/
+html, body {
+	margin-top: 0;
+	margin-right: 0;
+	margin-left: 0;
+	margin-bottom: 0;
+	background-color: #0c4a60;
+}
+
+h4, h3, h2, h1 {
+	font-family: 'Fira Sans', sans-serif;
+	text-align: center;
+}
+
+h2 {
+	color: #ef6b33 !important;
+}
+
+.row{
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.col-md-6, .col-xs-6{
+	background-color: #0c4a60;
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding-bottom: 6.5%;
+	height: 100%;
+}
+
+.col-med-6, .col-xs-6 img {
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 20%;
+}
+
+.inside-full-height, .content {
+	height:100vh;
+	min-height: 100%;
+ 	margin-top: 0;
+  	margin-bottom: 0;
+}
+
+p {
+	margin-right: 5%;
+	margin-left: 5%;
+	font-size: 1em;
+}
+
+#quote {
+	font-size: 1.25em;
+	color: #818e3e;
+	text-align: center;
+}
+
+/********************************************************************
+			Nav Bar 
+*********************************************************************/
+.navbar {
+	background-color: #ef6b32;
+	color: white !important;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 0;
+	padding: 0, 0, 0, 0;
+}
+
+.navbar a{
+	font-size: 1em;
+	color: white !important;
+	cursor: pointer;
+}
+
+.navbar .navbar-nav{
+
+}
+
+.navbar .navbar-right a{
+
+}
+
+.navbar .navbar-right li > a:hover{
+	color: black !important;
+	font-weight: bolder;
+}
+
+.navbar .navbar-collapse{
+	text-align: center;
+}
+
+.navbar img {
+	width: 100%;
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 0;
+}
+
+#pageTitle {
+	color: white !important;
+	font-size: 2em;
+	margin: 0.2em;
+	font-family: 'Orbitron', sans-serif !important;
+}
+
+/********************************************************************
+			Buttons
+*********************************************************************/
+.buttonLogin{
+	display: inline-block;
+	min-width: 150px;
+	width: 25% !important;
+	padding-bottom: .3em;
+	padding-top: .3em;
+	margin-right: 10%;
+	background: #aadff1;
+	border-radius: 7px;
+	color: white;
+	font-family: 'Fira Sans', sans-serif;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.buttonOther{
+	display: inline-block;
+	min-width: 150px;
+	width: 25% !important;
+	padding-bottom: .3em;
+	padding-top: .3em;
+	margin-right: 10%;
+	background: #0c4a60;
+	border-radius: 7px;
+	color: white;
+	font-family: 'Fira Sans', sans-serif;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+#centered {
+	margin-left: 38.5%;
+}
+
+#rightButton {
+	margin-left: 12% !important;
+	margin-right: 12%;
+	display: inline;
+}
+
+#leftButton {
+	margin-right: 12% !important;
+	margin-left: 12%;
+	display: inline;
+}
+
+button:hover {
+	background: #15799c;
+}
+
+/*********************************************************************
+			Forms
+*********************************************************************/
+
+.form-group {
+	margin-left: 5% !important;
+	margin-right: 5% !important;
+}
+
+input[type="radio"] {
+	margin-right: .5em;
+	margin-left: 1em;
+}
+
+/*********************************************************************
+			Tables
+*********************************************************************/
+
+#table-div {
+	margin-left: 5% !important;
+	margin-right: 5% !important;
+}
+
+/*********************************************************************
+			Main Body of Text - Not Login
+*********************************************************************/
+.mainText{
+	margin-top: 2%;
+	margin-right: 5%;
+	margin-left: 5%;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	background-color: #e1dddb;
+}
+
+/*********************************************************************
+			Main Body of Text - Login
+**********************************************************************/
+
+
+/**********************************************************************
+			Left Side
+**********************************************************************/
+
+
+/**********************************************************************
+			Right Side
+*********************************************************************/
