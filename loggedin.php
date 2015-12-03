@@ -10,7 +10,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device=width, initial-scale=1">
+		<!-- <meta name="viewport" content="width=device=width, initial-scale=1"> -->
 		<link rel="icon" href="../../favicon.ico">
 
 		<title>Game Night</title>
@@ -20,6 +20,76 @@
 		<link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,700' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Orbitron:500' rel='stylesheet' type='text/css'>
 		<script src="actions.js"></script>
+		<script>
+			viewRoster = function () {
+				var playerRoster = <?php echo json_encode($_SESSION['players']) ?>;
+				var newPlayer;
+				var obj;
+				var key;
+				var player;
+
+				console.debug(playerRoster);
+
+				document.getElementById("workarea").innerHTML = "";
+
+				var area = document.getElementById("workarea");
+				var areaForm = document.createElement('div');
+				areaForm.innerHTML = '<div class="mainText"><h2>THIS EVENT\'S ROSTER</h2><div class="form-group" id="playerRosterDiv"></div></div><div id="message4"></div>';
+				area.appendChild(areaForm);
+
+
+		        for(key in playerRoster) {
+		            player = playerRoster[key];
+		            console.debug("player: " + player);
+			    	newPlayer = document.createElement('div');
+			    	newPlayer.innerHTML = '<p style="width:100%"><div class="rosterSpace"><span class="rosterPlayer">' + player + '</span></div><button class="buttonRoster" type="button" onclick="removePlayer(\'' + player + '\')">REMOVE PLAYER</button></p>';
+		    		areaForm.appendChild(newPlayer);
+		    	}
+
+				
+			}
+
+			recordPlayerScore = function () {
+				var playerRoster = <?php echo json_encode($_SESSION['players']) ?>;
+				var score;
+				var obj;
+				var key;
+				var player;
+
+		        for(key in playerRoster) {
+		            player = playerRoster[key];
+			    	score = document.createElement('div');
+			    	score.innerHTML = '<div class="form-group"><div class="rosterSpace"><span class="rosterPlayer">' + player + '</span></div><form><input type="hidden" name="nameofplayer" value="' + player + '"><input type="radio" name="score" value="win">Win<input type="radio" name="score" value="loss">Loss<input type="radio" name="score" value="tie">Tie</form></div>';
+		    		addPlayerDiv.appendChild(score);
+		    	}
+
+
+			}
+
+			function removePlayer(playerName) {
+				//encoding url-style string with variable data to send as POST in AJAX
+				var params = "uname=" + encodeURIComponent(playerName);
+
+				//passed all error checking at the browser level, so start AJAX.  If server sends error messages, they will show in the same html element as above.
+				var xhr = new XMLHttpRequest();
+				if (!xhr) {
+			        throw 'Unable to create HttpRequest.'; // you're using a horrible browser
+			    }
+
+			    xhr.open("POST", "removeplayer.php", true);
+			    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xhr.send(params);
+				 
+				xhr.onreadystatechange = function ()
+				{
+				    if (xhr.readyState==4 && xhr.status==200)  {
+				      	document.getElementById("message4").innerHTML = '<p>' + xhr.responseText + '</p>';
+				      	window.location.reload();
+				    }
+				}
+			}
+		</script>
+
 	</head>
 
 	<body>
@@ -31,11 +101,15 @@
 			<div class="col-md-3 col-xs-3">
 				<div class="inside inside-full-height">
       			  	<div class="divContent">
-      			  		<p><button class="buttonAction" type="button">HOST A GAME NIGHT</button></p>
+      			  		<p><button class="buttonAction" type="button" onclick="hostGameNight()">ADD A PLAYER TO THE ROSTER</button></p>
+      			  		<p><button class="buttonAction" type="button" onclick="viewRoster()">VIEW CURRENT ROSTER</button></p>
+      			  		<p><button class="buttonAction" type="button" onclick="recordRound()">RECORD GAME OUTCOME</button></p>
       			  		<p><button class="buttonAction" type="button">GET RECOMMENDATIONS</button></p>
-      			  		<p><button class="buttonAction" type="button">SEE HOW YOU RANK</button></p>
+      			  		<p><button class="buttonAction" type="button" onclick="seeRank()">SEE HOW YOU RANK</button></p>
       			  		<p><button class="buttonAction" type="button" onclick="insertGame()">ADD A NEW GAME</button></p>
-      			  		<p><button class="buttonAction" type="button">RATE A GAME</button></p>
+      			  		<p><button class="buttonAction" type="button" onclick="rateGame()">RATE A GAME</button></p>
+      			  		<p><button class="buttonAction" type="button" onclick="getStats()">STATISTICS</button></p>
+      			  		<p><button class="buttonAction" type="button" onclick="insertNewRound('2/11/2981 06:25:22', 'Robo-Rally')">TESTING</button></p>
       			  	</div>
      			</div>
 			</div>

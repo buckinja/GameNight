@@ -45,18 +45,10 @@
   } else if ( hash('sha256', $slt . $pc) !== $pcode) {
       echo "<p>Invalid username or password.</p>";
   } else {
-    if (session_status() == PHP_SESSION_ACTIVE) {
-      if (!isset($_SESSION['uname']) || $_SESSION['uname'] === $uname) { //if new session, set username
-        $_SESSION['uname'] = $uname;
-        $_SESSION['id'] = $id;
-        $_SESSION['players'] = array();
-        $_SESSION['players'][] = $uname;
-        echo 'Welcome!';
-      } else {
-        echo "Another user is currently logged in.";
-      }
-    }
+    $_SESSION['players'][] = $uname;
+    echo "Player added successfully.";
   }
+
   $stmt->close();
   $mysqli->close();
 ?>

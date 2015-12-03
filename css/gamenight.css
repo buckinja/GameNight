@@ -18,6 +18,22 @@ h2, h4 {
 	color: #ef6b33 !important;
 }
 
+.rankSpan {
+	font-family: 'Fira Sans', sans-serif;
+	text-align: left;
+	font-size: 1.3em;
+	color: #0c4a60 !important
+}
+
+.rosterPlayer {
+	color: #ef6b33 !important;
+	font-family: 'Fira Sans', sans-serif;
+	margin-left: 3em;
+	margin-right: 3em;
+	font-size: 1.5em;
+	text-align: center;
+}
+
 .row{
 	margin-top: 0;
 	margin-bottom: 0;
@@ -115,6 +131,20 @@ h2, h4 {
 	min-height: 100%;
  	margin-top: 0;
   	margin-bottom: 0;
+}
+
+.rosterSpace {
+	width: 300px;
+	display: inline-block;
+	font-family: 'Fira Sans', sans-serif;
+	text-align: left;
+	font-size: 1.3em;
+	color: #0c4a60 !important
+}
+
+.rankSpace {
+	width: 80%;
+	display: inline-block;
 }
 
 p {
@@ -218,6 +248,22 @@ p {
 	padding-bottom: .3em;
 	padding-top: .3em;
 	margin-right: 10%;
+	background: #0c4a60;
+	border-radius: 7px;
+	color: white;
+	font-family: 'Fira Sans', sans-serif;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.buttonRoster{
+	display: inline-block;
+	min-width: 150px;
+	width: 25% !important;
+	padding-bottom: .3em;
+	padding-top: .3em;
+	margin-right: 10%;
+	margin-left: 10%;
 	background: #0c4a60;
 	border-radius: 7px;
 	color: white;

@@ -31,7 +31,7 @@
 
   $stmt->fetch();
 
-  if ($genre1 !== "") {
+  if ($genre1 != "" && $genre1 != NULL) {
       echo "<p>That game is already in the system.</p><p>Look in category " . $genre1 . " or in theme " . $theme1. ".</p><br>";
   } else {
 
@@ -41,7 +41,7 @@
       } 
 
       if (!($stmt2 = $mysqli2->prepare('INSERT INTO game (name, genre, theme) VALUES (?, ?, ?)'))) {
-         echo "Prepare failed: (" . $mysqli2->errno . ") " . $mysqli->error;
+         echo "Prepare failed: (" . $mysqli2->errno . ") " . $mysqli2->error;
       }
 
       if (!($stmt2->bind_param('sss', $gameName, $genre, $theme))) {
