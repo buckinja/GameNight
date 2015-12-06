@@ -20,7 +20,11 @@
 		<link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,700' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Orbitron:500' rel='stylesheet' type='text/css'>
 		<script src="actions.js"></script>
+
+		<!-- scripts that require php -->
 		<script>
+			//creates html on right side of the screen with all players and a button to remove any of them immediately from the roster. 
+			//Onclick calls removePlayer(player)
 			viewRoster = function () {
 				var playerRoster = <?php echo json_encode($_SESSION['players']) ?>;
 				var newPlayer;
@@ -45,10 +49,9 @@
 			    	newPlayer.innerHTML = '<p style="width:100%"><div class="rosterSpace"><span class="rosterPlayer">' + player + '</span></div><button class="buttonRoster" type="button" onclick="removePlayer(\'' + player + '\')">REMOVE PLAYER</button></p>';
 		    		areaForm.appendChild(newPlayer);
 		    	}
-
-				
 			}
 
+			//adds radio buttons and hidden input in order to collect user input about players' scores
 			recordPlayerScore = function () {
 				var playerRoster = <?php echo json_encode($_SESSION['players']) ?>;
 				var score;
@@ -62,18 +65,15 @@
 			    	score.innerHTML = '<div class="form-group"><div class="rosterSpace"><span class="rosterPlayer">' + player + '</span></div><form><input type="hidden" name="nameofplayer" value="' + player + '"><input type="radio" name="score" value="win">Win<input type="radio" name="score" value="loss">Loss<input type="radio" name="score" value="tie">Tie</form></div>';
 		    		addPlayerDiv.appendChild(score);
 		    	}
-
-
 			}
 
+			//players are stored in roster in session storage, so this uses AJAX to send player name to removeplayer.php for removal from roster
 			function removePlayer(playerName) {
-				//encoding url-style string with variable data to send as POST in AJAX
 				var params = "uname=" + encodeURIComponent(playerName);
 
-				//passed all error checking at the browser level, so start AJAX.  If server sends error messages, they will show in the same html element as above.
 				var xhr = new XMLHttpRequest();
 				if (!xhr) {
-			        throw 'Unable to create HttpRequest.'; // you're using a horrible browser
+			        throw 'Unable to create HttpRequest.'; 
 			    }
 
 			    xhr.open("POST", "removeplayer.php", true);
@@ -104,12 +104,10 @@
       			  		<p><button class="buttonAction" type="button" onclick="hostGameNight()">ADD A PLAYER TO THE ROSTER</button></p>
       			  		<p><button class="buttonAction" type="button" onclick="viewRoster()">VIEW CURRENT ROSTER</button></p>
       			  		<p><button class="buttonAction" type="button" onclick="recordRound()">RECORD GAME OUTCOME</button></p>
-      			  		<p><button class="buttonAction" type="button">GET RECOMMENDATIONS</button></p>
+      			  		<p><button class="buttonAction" type="button" onclick="getRecommendation()">GET RECOMMENDATIONS</button></p>
       			  		<p><button class="buttonAction" type="button" onclick="seeRank()">SEE HOW YOU RANK</button></p>
       			  		<p><button class="buttonAction" type="button" onclick="insertGame()">ADD A NEW GAME</button></p>
-      			  		<p><button class="buttonAction" type="button" onclick="rateGame()">RATE A GAME</button></p>
-      			  		<p><button class="buttonAction" type="button" onclick="getStats()">STATISTICS</button></p>
-      			  		<p><button class="buttonAction" type="button" onclick="insertNewRound('2/11/2981 06:25:22', 'Robo-Rally')">TESTING</button></p>
+      			  		<p><button class="buttonAction" type="button" onclick="rateGame()">RATE A GAME/CHANGE RATING</button></p>
       			  	</div>
      			</div>
 			</div>

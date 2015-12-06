@@ -24,14 +24,16 @@
       return $random;
   }
 
+  //gets post data
   $lname = $_POST['lname'];
   $fname = $_POST['fname'];
   $uname = $_POST['uname'];
   $passc = $_POST['pc'];
+  //creates random string for a salt, hashes password with salt
   $newSalt = makeRandStr();
   $pc = hash('sha256', $newSalt . $passc);
 
-
+  //checks if username is already in database and errors if it is
   if (!($stmt = $mysqli->prepare('SELECT uname FROM player WHERE uname = (?)'))) {
       echo "<p>You did not enter a valid username or password.</p>";
   } 
@@ -47,26 +49,22 @@
       echo "That user name is already taken.";
   } else {
 
-      $mysqli2 = new mysqli('oniddb.cws.oregonstate.edu', 'buckinja-db', $pw, 'buckinja-db');
-      if ($mysqli2->connect_errno) {
-          echo "Failed to connect to MySQL: " . $mysqli2->connect_error;
-      } 
-
-      if (!($stmt2 = $mysqli2->prepare('INSERT INTO player(fname, lname, uname, pc, slt) VALUES (?, ?, ?, ?, ?)'))) {
-         echo "Prepare failed: (" . $mysqli2->errno . ") " . $mysqli->error;
+      $stmt->close();
+      //if username is free, create a new row in player
+      if (!($stmt = $mysqli->prepare('INSERT INTO player(fname, lname, uname, pc, slt) VALUES (?, ?, ?, ?, ?)'))) {
+         echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
       }
 
-      if (!($stmt2->bind_param('sssss', $fname, $lname, $uname, $pc, $newSalt))) {
-          echo "Binding parameters failed: (" . $stmt2->errno . ") " . $stmt2->error;
+      if (!($stmt->bind_param('sssss', $fname, $lname, $uname, $pc, $newSalt))) {
+          echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
       }
 
-      if (!$stmt2->execute()) {
+      if (!$stmt->execute()) {
         echo "<p>Account creation failed.</p>";
       } else {
         echo '<p>Account created successfully.</p>';
       }
-      $stmt2->close();
-      $mysqli2->close();
+
   }
   $stmt->close();
   $mysqli->close();

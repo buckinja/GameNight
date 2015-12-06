@@ -3,7 +3,7 @@
   session_start();
 
   include 'pw.php';
-
+//new obj for queries
   $mysqli = new mysqli('oniddb.cws.oregonstate.edu', 'buckinja-db', $pw, 'buckinja-db');
   if ($mysqli->connect_errno) {
       echo "Failed to connect to MySQL: " . $mysqli->connect_error;
@@ -21,6 +21,7 @@
 
   $gameID = 0;
   $playerID = 0;
+  //if round id is set, grab it, otherwise set it to 0 (middle condition should never be reached)
   if (isset($_SESSION['rid'])) {
     $roundID = $_SESSION['rid'];
   } else if ($player != "" && $player != NULL) {
@@ -31,10 +32,10 @@
   }
 
   if ($player == "" || $player == NULL) {
-      //creating a new round in round table
+      //we need to create a new row in round if it doesn't exist
       $roundID = 0;
 
-      //get gid from game table
+      //get id from round table if it's there
       if (!($stmt = $mysqli->prepare('SELECT id FROM round WHERE date_played = (?)'))) {
           echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
       } 
@@ -52,9 +53,6 @@
 
       $_SESSION['rid'] = "";
       $_SESSION['rid'] = $roundID;
-      //echo "new session rid: " . $_SESSION['rid'] . " because roundID was reset hopefully. ";
-
-      //echo "do we need to create a round?: " . $roundID;
 
       //if no matching round has been found, create one
       if($roundID == 0 || $roundID == NULL) {
@@ -96,7 +94,6 @@
                   echo "<p>Round addition failed.</p>";
                 } else {
 
-                  //echo "New round is in the system. roundID: " . $roundID;
                   //if round creation was successful, get round id by referencing the date
                   $stmt->close(); 
                   $roundID = 0;
@@ -168,7 +165,7 @@
     $stmt->fetch();
 
     //ensure game id was fetched properly
-    if ($gameID == "" || $gameID == NULL) {
+    if ($gameID == 0 || $gameID == NULL) {
         echo "<p>That game is not in the system.</p><p>Click on \"ADD A NEW GAME\" to add it!</p><br>";
     } else {
 
@@ -226,21 +223,11 @@
                 if (!$stmt->execute()) {
                     echo "<p>Win increment failed.</p>";
                 } 
-
             } 
-
-        } else {
-          echo "playerID: " . $playerID;
-          echo "player: " . $player;
-          echo "roundID: " . $roundID;
-          echo "inserting round-player failed";
-        }
-
+        } 
         echo "<p>Your completed game was recorded successfully.</p>";
-        
     }
   }
-
 
   $stmt->close();
   $mysqli->close();

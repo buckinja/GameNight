@@ -18,7 +18,7 @@ checkUserName = function () {
 	else {
 		var xhr = new XMLHttpRequest();
 		if (!xhr) {
-	        throw 'Unable to create HttpRequest.'; // you're using a horrible browser
+	        throw 'Unable to create HttpRequest.'; 
 	    }
 
 	    xhr.open("POST", "signup.php", true);
@@ -46,7 +46,7 @@ signIn = function () {
 	} else {
 		var xhr = new XMLHttpRequest();
 		if (!xhr) {
-	        throw 'Unable to create HttpRequest.'; // you're using a horrible browser
+	        throw 'Unable to create HttpRequest.'; 
 	    }
 
 	    xhr.open("POST", "loggingin.php", true);
@@ -56,9 +56,6 @@ signIn = function () {
 		xhr.onreadystatechange = function ()
 		{
 		    if (xhr.readyState==4 && xhr.status==200)  {
-		    // {
-		    //     document.getElementById("message2").innerHTML = xhr.responseText;
-		    // }
 
 			    if (xhr.responseText === 'Welcome!')
 			    {		    	

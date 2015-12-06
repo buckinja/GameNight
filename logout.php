@@ -4,6 +4,7 @@
 	header('Content-Type: text/html');
 	session_start();
 
+	//end session
 	$_SESSION = array();
 	session_destroy();
 	header("Location: gamenight.php", true);
